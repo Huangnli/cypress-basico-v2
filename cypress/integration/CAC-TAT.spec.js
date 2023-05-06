@@ -13,7 +13,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {
 
     // # = id
     // . = class
-    it.only('preenche os campos obrigatórios e envia o formulário', function () {
+    it('preenche os campos obrigatórios e envia o formulário', function () {
         /*======Montagem do cenário======*/
         const longText = "Estou com duvidas sobre...  teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste"
 
@@ -27,6 +27,21 @@ describe('Central de Atendimento ao Cliente TAT', function () {
 
         /*======Verificação======*/
         cy.get('.success').should('be.visible')
-
     })
+
+    it.only('exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', function () {
+        /*======Montagem do cenário======*/
+        const errorEmail = "Julio2huang.com"
+
+        /*======Execução======*/
+        cy.get('#firstName').type('Julio')
+        cy.get('#lastName').type('Huang')
+        cy.get('#email').type(errorEmail)
+        cy.get('#open-text-area').type('Test')
+        cy.get('button[type="submit"]').click()
+
+        /*======Verificação======*/
+        cy.get('.error').should('be.visible')
+    })
+
 })
