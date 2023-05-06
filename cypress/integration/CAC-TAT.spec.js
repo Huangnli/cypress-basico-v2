@@ -44,7 +44,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {
         cy.get('.error').should('be.visible')
     })
 
-    it.only('verifica se campo de telefone só aceita números ao preencher valor não-numérico', function () {
+    it('verifica se campo de telefone só aceita números ao preencher valor não-numérico', function () {
         /*======Montagem do cenário======*/
         const phone = 'DDD'
 
@@ -54,5 +54,20 @@ describe('Central de Atendimento ao Cliente TAT', function () {
         /*======Verificação======*/
         cy.get('#phone').should('have.value', '')
 
+    })
+
+    it.only('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function () {
+        /*======Montagem do cenário======*/
+
+        /*======Execução======*/
+        cy.get('#firstName').type('Julio')
+        cy.get('#lastName').type('Huang')
+        cy.get('#email').type('Julio@huang.com')
+        cy.get('#open-text-area').type('Test')
+        cy.get('#phone-checkbox').click()
+        cy.get('button[type="submit"]').click()
+
+        /*======Verificação======*/
+        cy.get('.error').should('be.visible')
     })
 })
