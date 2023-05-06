@@ -29,7 +29,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {
         cy.get('.success').should('be.visible')
     })
 
-    it.only('exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', function () {
+    it('exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', function () {
         /*======Montagem do cenário======*/
         const errorEmail = "Julio2huang.com"
 
@@ -44,4 +44,15 @@ describe('Central de Atendimento ao Cliente TAT', function () {
         cy.get('.error').should('be.visible')
     })
 
+    it.only('verifica se campo de telefone só aceita números ao preencher valor não-numérico', function () {
+        /*======Montagem do cenário======*/
+        const phone = 'DDD'
+
+        /*======Execução======*/
+        cy.get('#phone').type(phone)
+
+        /*======Verificação======*/
+        cy.get('#phone').should('have.value', '')
+
+    })
 })
