@@ -14,16 +14,18 @@ describe('Central de Atendimento ao Cliente TAT', function () {
     // # = id
     // . = class
     it.only('preenche os campos obrigatórios e envia o formulário', function () {
-        //Montagem do cenário
+        /*======Montagem do cenário======*/
+        const longText = "Estou com duvidas sobre...  teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste"
 
-        //Execução
+        /*======Execução======*/
         cy.get('#firstName').type('Julio')
         cy.get('#lastName').type('Huang')
         cy.get('#email').type('Julio@huang.com')
-        cy.get('#open-text-area').type('Estou com duvidas sobre...')
+        //por ser texto longo, foi sobreescrito o delay para valor zero, para diminuir o tempo ao preencher o texto
+        cy.get('#open-text-area').type(longText, { delay: 0 })
         cy.get('button[type="submit"]').click()
 
-        //Verificação
+        /*======Verificação======*/
         cy.get('.success').should('be.visible')
 
     })
