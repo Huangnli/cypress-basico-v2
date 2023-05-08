@@ -90,13 +90,22 @@ describe('Central de Atendimento ao Cliente TAT', function () {
         cy.get('#phone').clear().should('have.value', '')
     })
 
-    it.only('exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', function () {
+    it('exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', function () {
         /*======Montagem do cenário======*/
 
-       /*======Execução======*/
-       cy.get('button[type="submit"]').click()
+        /*======Execução======*/
+        cy.get('button[type="submit"]').click()
 
-       /*======Verificação======*/
-       cy.get('.error').should('be.visible')
-   })
+        /*======Verificação======*/
+        cy.get('.error').should('be.visible')
+    })
+
+    it.only('envia o formuário com sucesso usando um comando customizado', function () {
+        /*======Montagem do cenário======*/
+        /*======Execução======*/
+        cy.fillMandatoryFieldsAndSubmit()
+
+         /*======Verificação======*/
+        cy.get('.success').should('be.visible')
+    })
 })
