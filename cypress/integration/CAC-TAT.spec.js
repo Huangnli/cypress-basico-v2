@@ -112,31 +112,31 @@ describe('Central de Atendimento ao Cliente TAT', function () {
     it('seleciona um produto (YouTube) por seu texto', function () {
         /*======Montagem do cenário======*/
 
-        /*======Execução======*/
-        cy.get('#product').select('YouTube')
+        /*======Execução e Verificação======*/
+        cy.get('#product').select('YouTube').should('have.value', 'youtube')
 
-        /*======Verificação======*/
-        cy.get('select').should('have.value', 'youtube')
     })
 
     it('seleciona um produto (Mentoria) por seu valor (value)', function () {
         /*======Montagem do cenário======*/
 
-        /*======Execução======*/
-        cy.get('#product').select('mentoria')
+        /*======Execução e Verificação======*/
+        cy.get('#product').select('mentoria').should('have.value', 'mentoria')
 
-        /*======Verificação======*/
-        cy.get('select').should('have.value', 'mentoria')
     })
 
-    it.only('seleciona um produto (Blog) por seu índice', function () {
+    it('seleciona um produto (Blog) por seu índice', function () {
         /*======Montagem do cenário======*/
 
-        /*======Execução======*/
-        cy.get('#product').select(1)
+        /*======Execução e Verificação======*/
+        cy.get('#product').select(1).should('have.value', 'blog')
 
-        /*======Verificação======*/
-        cy.get('select').should('have.value', 'blog')
+    })
+
+    it.only('marca o tipo de atendimento "Feedback"', function () {
+        /*======Execução e Verificação======*/
+        cy.get('#support-type [type="radio"][value="feedback"]').check().should('have.value', 'feedback')
+
     })
 
 })
