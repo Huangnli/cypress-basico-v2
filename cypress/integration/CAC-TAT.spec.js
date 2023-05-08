@@ -119,7 +119,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {
         cy.get('select').should('have.value', 'youtube')
     })
 
-    it.only('seleciona um produto (Mentoria) por seu valor (value)', function () {
+    it('seleciona um produto (Mentoria) por seu valor (value)', function () {
         /*======Montagem do cenário======*/
 
         /*======Execução======*/
@@ -127,6 +127,16 @@ describe('Central de Atendimento ao Cliente TAT', function () {
 
         /*======Verificação======*/
         cy.get('select').should('have.value', 'mentoria')
+    })
+
+    it.only('seleciona um produto (Blog) por seu índice', function () {
+        /*======Montagem do cenário======*/
+
+        /*======Execução======*/
+        cy.get('#product').select(1)
+
+        /*======Verificação======*/
+        cy.get('select').should('have.value', 'blog')
     })
 
 })
