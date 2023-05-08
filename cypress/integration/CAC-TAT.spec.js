@@ -23,7 +23,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {
         cy.get('#email').type('Julio@huang.com')
         //por ser texto longo, foi sobreescrito o delay para valor zero, para diminuir o tempo ao preencher o texto
         cy.get('#open-text-area').type(longText, { delay: 0 })
-        cy.get('button[type="submit"]').click()
+        cy.contains('button', 'Enviar').click()
 
         /*======Verificação======*/
         cy.get('.success').should('be.visible')
@@ -38,7 +38,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {
         cy.get('#lastName').type('Huang')
         cy.get('#email').type(errorEmail)
         cy.get('#open-text-area').type('Test')
-        cy.get('button[type="submit"]').click()
+        cy.contains('button', 'Enviar').click()
 
         /*======Verificação======*/
         cy.get('.error').should('be.visible')
@@ -65,7 +65,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {
         cy.get('#email').type('Julio@huang.com')
         cy.get('#open-text-area').type('Test')
         cy.get('#phone-checkbox').click()
-        cy.get('button[type="submit"]').click()
+        cy.contains('button', 'Enviar').click()
 
         /*======Verificação======*/
         cy.get('.error').should('be.visible')
@@ -94,13 +94,13 @@ describe('Central de Atendimento ao Cliente TAT', function () {
         /*======Montagem do cenário======*/
 
         /*======Execução======*/
-        cy.get('button[type="submit"]').click()
+        cy.contains('button', 'Enviar').click()
 
         /*======Verificação======*/
         cy.get('.error').should('be.visible')
     })
 
-    it.only('envia o formuário com sucesso usando um comando customizado', function () {
+    it('envia o formuário com sucesso usando um comando customizado', function () {
         /*======Montagem do cenário======*/
         /*======Execução======*/
         cy.fillMandatoryFieldsAndSubmit()
@@ -108,4 +108,5 @@ describe('Central de Atendimento ao Cliente TAT', function () {
          /*======Verificação======*/
         cy.get('.success').should('be.visible')
     })
+
 })
