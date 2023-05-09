@@ -186,12 +186,17 @@ describe('Central de Atendimento ao Cliente TAT', function () {
             })
     })
 
-    it.only('seleciona um arquivo utilizando uma fixture para a qual foi dada um alias', function () {
+    it('seleciona um arquivo utilizando uma fixture para a qual foi dada um alias', function () {
         cy.fixture('example.json').as('sampleFile')
         cy.get('input#file-upload')
             .selectFile('@sampleFile')
             .should(function ($input) {
                 expect($input[0].files[0].name).to.equal('example.json')
             })
+    })
+
+    it.only('verifica que a política de privacidade abre em outra aba sem a necessidade de um clique', function () {
+        // Atributo target com o valor _blank, quando clicado, obrigatóriamente o valor do atributo href será aberto em uma nova aba
+        cy.get('#privacy a').should('have.attr', 'target', '_blank')
     })
 })
