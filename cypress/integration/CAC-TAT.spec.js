@@ -158,12 +158,22 @@ describe('Central de Atendimento ao Cliente TAT', function () {
             .should('not.be.checked')
     })
 
-    it.only('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function () {
+    it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function () {
         /*======Execução======*/
         cy.get('#phone-checkbox').check()
         cy.fillMandatoryFieldsAndSubmit()
 
         /*======Verificação======*/
         cy.get('.error').should('be.visible')
+    })
+
+    it.only('seleciona um arquivo da pasta fixtures', function () {
+        cy.get('input#file-upload')
+            .should('not.have.value')
+            .selectFile('./cypress/fixtures/example.json')
+            .should(function ($input) {
+                // console.log($input)
+                expect($input[0].files[0].name).to.equal('example.json')
+            })
     })
 })
