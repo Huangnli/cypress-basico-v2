@@ -195,8 +195,14 @@ describe('Central de Atendimento ao Cliente TAT', function () {
             })
     })
 
-    it.only('verifica que a política de privacidade abre em outra aba sem a necessidade de um clique', function () {
+    it('verifica que a política de privacidade abre em outra aba sem a necessidade de um clique', function () {
         // Atributo target com o valor _blank, quando clicado, obrigatóriamente o valor do atributo href será aberto em uma nova aba
         cy.get('#privacy a').should('have.attr', 'target', '_blank')
+    })
+
+    it.only('acessa a página da política de privacidade removendo o target e então clicando no link', function () {
+        cy.get('#privacy a').invoke('removeAttr', 'target').click()
+
+        cy.contains('Talking About Testing').should('be.visible')
     })
 })
