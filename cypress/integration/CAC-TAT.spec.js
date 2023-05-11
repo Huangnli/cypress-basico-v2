@@ -16,7 +16,6 @@ describe('Central de Atendimento ao Cliente TAT', function () {
     // # = id
     // . = class
     it('preenche os campos obrigatórios e envia o formulário', function () {
-        /*======Montagem do cenário======*/
         const longText = "Estou com duvidas sobre...  teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste"
 
         /*======Execução======*/
@@ -37,7 +36,6 @@ describe('Central de Atendimento ao Cliente TAT', function () {
     })
 
     it('exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', function () {
-        /*======Montagem do cenário======*/
         const errorEmail = "Julio2huang.com"
 
         /*======Execução======*/
@@ -54,16 +52,17 @@ describe('Central de Atendimento ao Cliente TAT', function () {
         cy.get('.error').should('not.be.visible')
     })
 
-    it('verifica se campo de telefone só aceita números ao preencher valor não-numérico', function () {
-        /*======Montagem do cenário======*/
-        const phone = 'DDD'
+    Cypress._.times(3, function () {
+        it.only('verifica se campo de telefone só aceita números ao preencher valor não-numérico', function () {
+            const phone = 'DDD'
 
-        /*======Execução======*/
-        cy.get('#phone').type(phone)
+            /*======Execução======*/
+            cy.get('#phone').type(phone)
 
-        /*======Verificação======*/
-        cy.get('#phone').should('have.value', '')
+            /*======Verificação======*/
+            cy.get('#phone').should('have.value', '')
 
+        })
     })
 
     it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function () {
@@ -84,7 +83,6 @@ describe('Central de Atendimento ao Cliente TAT', function () {
     })
 
     it('preenche e limpa os campos nome, sobrenome, email e telefone', function () {
-        /*======Montagem do cenário======*/
         const firstName = 'Julio'
         const lastName = 'Huang'
         const email = 'Julio@huang.com'
@@ -114,7 +112,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {
     })
 
     it('envia o formuário com sucesso usando um comando customizado', function () {
-        /*======Montagem do cenário======*/
+
         /*======Execução======*/
         cy.clock()
         cy.fillMandatoryFieldsAndSubmit()
@@ -126,7 +124,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {
     })
 
     it('seleciona um produto (YouTube) por seu texto', function () {
-        /*======Montagem do cenário======*/
+
 
         /*======Execução e Verificação======*/
         cy.get('#product').select('YouTube').should('have.value', 'youtube')
@@ -134,7 +132,6 @@ describe('Central de Atendimento ao Cliente TAT', function () {
     })
 
     it('seleciona um produto (Mentoria) por seu valor (value)', function () {
-        /*======Montagem do cenário======*/
 
         /*======Execução e Verificação======*/
         cy.get('#product').select('mentoria').should('have.value', 'mentoria')
@@ -142,8 +139,6 @@ describe('Central de Atendimento ao Cliente TAT', function () {
     })
 
     it('seleciona um produto (Blog) por seu índice', function () {
-        /*======Montagem do cenário======*/
-
         /*======Execução e Verificação======*/
         cy.get('#product').select(1).should('have.value', 'blog')
 
