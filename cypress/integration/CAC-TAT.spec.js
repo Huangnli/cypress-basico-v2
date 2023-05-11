@@ -53,7 +53,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {
     })
 
     Cypress._.times(3, function () {
-        it.only('verifica se campo de telefone só aceita números ao preencher valor não-numérico', function () {
+        it('verifica se campo de telefone só aceita números ao preencher valor não-numérico', function () {
             const phone = 'DDD'
 
             /*======Execução======*/
@@ -112,7 +112,6 @@ describe('Central de Atendimento ao Cliente TAT', function () {
     })
 
     it('envia o formuário com sucesso usando um comando customizado', function () {
-
         /*======Execução======*/
         cy.clock()
         cy.fillMandatoryFieldsAndSubmit()
@@ -220,5 +219,22 @@ describe('Central de Atendimento ao Cliente TAT', function () {
 
         /*======Verificação======*/
         cy.contains('Talking About Testing').should('be.visible')
+    })
+
+    it.only('exibe e esconde as mensagens de sucesso e erro usando o .invoke', () => {
+        cy.get('.success')
+            .should('not.be.visible')
+            .invoke('show')
+            .should('be.visible')
+            .and('contain', 'Mensagem enviada com sucesso.')
+            .invoke('hide')
+            .should('not.be.visible')
+        cy.get('.error')
+            .should('not.be.visible')
+            .invoke('show')
+            .should('be.visible')
+            .and('contain', 'Valide os campos obrigatórios!')
+            .invoke('hide')
+            .should('not.be.visible')
     })
 })
