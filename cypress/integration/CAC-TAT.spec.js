@@ -16,7 +16,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {
     // # = id
     // . = class
     it('preenche os campos obrigatórios e envia o formulário', function () {
-        const longText = "Estou com duvidas sobre...  teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste"
+        const longText = Cypress._.repeat('Estou com duvidas sobre...', 5)
 
         /*======Execução======*/
         cy.clock() // Parar o tempo do navegador
